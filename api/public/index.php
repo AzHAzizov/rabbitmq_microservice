@@ -1,9 +1,31 @@
 <?php
+
 declare(strict_types=1);
 
-header('Content-Type: application/json');
+use App\Controllers\UsersController;
+use Symfony\Component\Dotenv\Dotenv;
+use Slim\Factory\AppFactory;
 
-echo json_encode([
-    'name' => 'App API',
-    'version' => '1.0'
-]);
+chdir(dirname(__DIR__));
+require 'vendor/autoload.php';
+
+
+
+if (file_exists('.env.example')) {
+    $dotenv = new Dotenv();
+    $dotenv->load(dirname(__DIR__) . '/.env');
+}
+
+
+print_r(getenv());
+die;
+
+
+(function () {
+    $config = require 'config/config.php';
+    $app = new \Slim\App($config);
+    (require 'config/routes.php')($app);
+
+
+    $app->run();
+})();

@@ -1,17 +1,22 @@
-import axios from 'axios'
-import BootstrapVue from 'bootstrap-vue'
-import Vue from 'vue'
+
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import components from '@/components/UI/index'
+import axios from 'axios'
 
-Vue.config.productionTip = false;
+
+
+
+const app = createApp(App)
+
+
+
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+components.map(component => {
+    app.component(component.name, component)
+})
 
-Vue.use(BootstrapVue)
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app');
+app.use(store).use(router).mount('#app')

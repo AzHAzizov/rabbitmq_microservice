@@ -1,53 +1,31 @@
 <template>
-  <div id="app">
-    <header class="app-header">
-      <Nav />
-    </header>
-
-    <div class="app-content">
-      <main class="container">
-        <router-view />
-      </main>
-    </div>
-
-    <footer class="app-footer">
-      <div class="container">
-        <hr />
-        <p>&copy; App. All rights reserved.</p>
-      </div>
-    </footer>
+  <!--eslint - disable-->
+  <navbar></navbar>
+  <div class="app">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
-import Nav from '@/components/Nav.vue'
+
+import Navbar from "@/components/Navbar"
 
 export default {
   components: {
-    Nav
+    Navbar
   }
 }
 </script>
 
-<style lang="scss">
-
-@import "assets/scss/variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~bootstrap-vue/dist/bootstrap-vue.css";
-
-body {
-  min-height: 100vh;
+<style>
+.app {
+  margin: 20px 20px;
 }
 
-#app { 
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column
-}
 
-.app-content {
-  flex: 1;
-  padding: 1rem 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
